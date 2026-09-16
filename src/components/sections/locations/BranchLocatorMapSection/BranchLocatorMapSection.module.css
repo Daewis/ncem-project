@@ -1,0 +1,234 @@
+.section {
+    display: grid;
+    grid-template-columns: 1fr;
+    width: 100%;
+    max-width: var(--max-width, 1232px);
+    margin: 0 auto;
+    gap: 32px;
+    padding: 0 16px 64px;
+    box-sizing: border-box;
+  }
+  
+  @media (min-width: 1024px) {
+    .section {
+      grid-template-columns: 380px 1fr;
+      padding: 0 0 120px;
+    }
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    border: 1px solid #c5c5d3;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .sidebarHeader {
+    padding: 24px;
+    background: #f0f3ff;
+    border-bottom: 1px solid #c5c5d3;
+  }
+  
+  .sidebarTitle {
+    margin: 0;
+    font-family: var(--font-heading, 'Montserrat', sans-serif);
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 32px;
+    color: #00236f;
+  }
+  
+  .sidebarSubtitle {
+    margin: 4px 0 0;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    color: #444651;
+  }
+  
+  .branchList {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+    max-height: 600px;
+    overflow-y: auto;
+  }
+  
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: #ffffff;
+    border: 1px solid #c5c5d3;
+    border-radius: 6px;
+    transition: border-color 0.2s, background-color 0.2s;
+  }
+  
+  .cardSelected {
+    border-color: #00236f;
+    background-color: rgba(240, 243, 255, 0.5);
+  }
+  
+  .cardHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  
+  .branchName {
+    margin: 0;
+    font-family: var(--font-heading, 'Montserrat', sans-serif);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 24px;
+    color: #00236f;
+  }
+  
+  .districtBadge {
+    display: inline-flex;
+    padding: 4px 12px;
+    background: #e2e8f8;
+    border-radius: 12px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 16px;
+    color: #00236f;
+  }
+  
+  .addressRow {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  
+  .addressIcon {
+    width: 14px;
+    height: 14px;
+    object-fit: contain;
+    opacity: 0.7;
+  }
+  
+  .addressText {
+    margin: 0;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    line-height: 20px;
+    color: #444651;
+  }
+  
+  .cardFooter {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+    border-top: 1px solid rgba(197, 197, 211, 0.5);
+  }
+  
+  .pastorInfo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .pastorIconWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: #e2e8f8;
+    border-radius: 8px;
+  }
+  
+  .pastorIcon {
+    width: 14px;
+    height: 14px;
+  }
+  
+  .pastorName {
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    font-weight: 500;
+    color: #444651;
+  }
+  
+  .viewButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: transparent;
+    border: none;
+    padding: 6px 10px;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 14px;
+    font-weight: 600;
+    color: #00236f;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background-color 0.15s;
+  }
+  
+  .viewButton:hover {
+    background-color: rgba(226, 232, 248, 0.6);
+  }
+  
+  .arrowIcon {
+    width: 12px;
+    height: 12px;
+  }
+  
+  /* Map Container */
+  .mapWrapper {
+    position: relative;
+    width: 100%;
+    min-height: 520px;
+    background: #e2e8f8;
+    border: 1px solid #c5c5d3;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .basemap {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .mapControls {
+    position: absolute;
+    top: 17px;
+    right: 17px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+  }
+  
+  .zoomButton {
+    width: 40px;
+    height: 40px;
+    background: #ffffff;
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: #444651;
+    transition: background-color 0.15s;
+  }
+  
+  .zoomButton:hover {
+    background: #f8f9fa;
+  }

@@ -1,0 +1,141 @@
+.sectionOther {
+  align-items: flex-start;
+  background-color: #f0f3ff;
+  display: flex;
+  flex-direction: column;
+  padding: 96px 24px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.content {
+  align-items: flex-start;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+  width: 100%;
+}
+
+.heading {
+  align-items: flex-end;
+  align-self: stretch;
+  display: flex;
+  width: 100%;
+}
+
+.headingContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.district {
+  color: #1e3a8a;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+}
+
+.title {
+  color: #151c27;
+  font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  margin: 0;
+}
+
+.locationsGrid {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+}
+
+.locationCard {
+  align-items: flex-start;
+  background-color: #ffffff;
+  border: 1px solid rgba(197, 197, 211, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  width: 100%;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.locationCard:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.locationImageWrapper {
+  height: 192px;
+  width: 100%;
+  background: linear-gradient(135deg, #dce1ff 0%, #e7eefe 100%);
+}
+
+.cardContent {
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 4px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.locationName {
+  color: #151c27;
+  font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0 0 8px;
+}
+
+.distanceText {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+
+.viewLocationRow {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.linkText {
+  color: #00236f;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+}
+
+@media (max-width: 767px) {
+  .sectionOther {
+    padding: 64px 24px;
+  }
+
+  .locationsGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

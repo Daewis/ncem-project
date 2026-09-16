@@ -1,0 +1,152 @@
+.heroSection {
+  aspect-ratio: 1280 / 716;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  padding: 267px 0 187px;
+  position: relative;
+  isolation: isolate;
+  width: 100%;
+}
+
+.background {
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.backgroundOverlay {
+  background-color: #00236f66;
+  height: 100%;
+  left: 0;
+  mix-blend-mode: multiply;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.gradient {
+  height: 100%;
+  left: 0;
+  object-fit: cover;
+  object-position: center; 
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  max-width: 672px;
+  text-align: center;
+}
+
+.district {
+  color: #ffc329;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  line-height: 20px;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.title {
+  color: #ffffff;
+  font-family: "Montserrat-Bold", Helvetica, sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -0.96px;
+  line-height: 1.15;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 28px;
+  margin: 8px 0 0;
+  max-width: 56ch;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 24px;
+}
+
+.directionsButton,
+.mapsButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 12px 32px;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, background-color 0.15s ease;
+}
+
+.directionsButton:hover,
+.directionsButton:focus-visible {
+  transform: translateY(-1px);
+}
+
+.directionsButton {
+  background-color: #ffc329;
+  color: #6f5100;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.directionsButton:hover,
+.directionsButton:focus-visible {
+  background-color: #ffcf52;
+}
+
+.mapsButton {
+  color: #ffffff;
+  background-color: rgba(249, 249, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.mapsButton:hover,
+.mapsButton:focus-visible {
+  background-color: rgba(249, 249, 255, 0.2);
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 72px 20px;
+  }
+
+  .actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .directionsButton,
+  .mapsButton {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,349 @@
+.sectionMainContent {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  width: 100%;
+  max-width: 1232px;
+  padding: 0 24px;
+  box-sizing: border-box;
+}
+
+.leftColumn,
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  width: 100%;
+}
+
+.locationCard,
+.pastorCard,
+.serviceTimesCard {
+  background-color: #ffffff;
+  border: 1px solid rgba(197, 197, 211, 0.3);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.locationCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.locationHeader {
+  border-bottom: 1px solid rgba(197, 197, 211, 0.2);
+  padding: 32px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.locationDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.findUsHeading {
+  color: #151c27;
+  font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 38px;
+  margin: 0;
+}
+
+.addressRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.iconWrapper {
+  display: inline-flex;
+  flex-shrink: 0;
+  color: #444651;
+}
+
+.addressText {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+
+.mapLinkWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #444651;
+  flex-shrink: 0;
+}
+
+.mapLinkWrapper:hover,
+.mapLinkWrapper:focus-visible {
+  color: #1e3a8a;
+}
+
+.mapContainer {
+  background-color: #f0f3ff;
+  position: relative;
+  height: 280px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.mapImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.pastorCard {
+  display: flex;
+  gap: 24px;
+  padding: 32px;
+  box-sizing: border-box;
+  flex-wrap: wrap;
+}
+
+.pastorImageFrame {
+  border: 2px solid rgba(197, 197, 211, 0.2);
+  border-radius: 12px;
+  height: 128px;
+  width: 128px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.pastorImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #ffffff;
+}
+
+.pastorDetails {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.pastorName {
+  color: #151c27;
+  font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0;
+}
+
+.pastorRole {
+  color: #1e3a8a;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+  margin: 0;
+}
+
+.pastorDescription {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 26px;
+  margin: 12px 0 0;
+}
+
+.serviceTimesCard {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 32px;
+  box-sizing: border-box;
+}
+
+.serviceTitle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #151c27;
+}
+
+.serviceHeading {
+  color: #151c27;
+  font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+  margin: 0;
+}
+
+.serviceList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.serviceRowFirst,
+.serviceRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+
+.serviceRowFirst {
+  border-bottom: 1px solid rgba(197, 197, 211, 0.2);
+}
+
+.serviceLabel {
+  color: #151c27;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+}
+
+.serviceTime {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  margin: 0;
+}
+
+.infoCards {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.infoCard {
+  display: flex;
+  flex-direction: column;
+  background-color: #f0f3ff;
+  border-radius: 8px;
+  padding: 24px;
+  flex: 1;
+  min-width: 200px;
+  box-sizing: border-box;
+}
+
+.programIconBackground,
+.eventIconBackground {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  height: 40px;
+  width: 40px;
+  margin-bottom: 16px;
+}
+
+.programIconBackground {
+  background-color: #dce1ff;
+  color: #1e3a8a;
+}
+
+.eventIconBackground {
+  background-color: #ffdf9f;
+  color: #7a4a00;
+}
+
+.infoTitle {
+  color: #151c27;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+  margin: 0 0 8px;
+}
+
+.programList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.programItem {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.infoLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  color: #00236f;
+  margin-top: auto;
+}
+
+.infoLink:hover .linkText,
+.infoLink:focus-visible .linkText {
+  text-decoration: underline;
+}
+
+.linkText {
+  color: #00236f;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+}
+
+.eventDetails {
+  background-color: #ffffff;
+  border: 1px solid rgba(197, 197, 211, 0.2);
+  border-radius: 4px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 16px;
+}
+
+.eventName {
+  color: #1e3a8a;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+}
+
+.eventDate {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@media (max-width: 900px) {
+  .sectionMainContent {
+    grid-template-columns: 1fr;
+  }
+}

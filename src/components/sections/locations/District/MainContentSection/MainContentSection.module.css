@@ -1,0 +1,327 @@
+.mainContent {
+  display: flex;
+  grid-template-columns: 512px 1fr;
+  max-width: 100%;
+  min-height: 819px;
+  position: relative;
+  width: 100%;
+  margin: 0 auto;     
+  padding-top: 20px;
+}
+
+.sidebar {
+  align-items: flex-start;
+  background-color: #f9f9ff;
+  border-right: 1px solid #c5c5d3;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+ 
+}
+
+.sidebarHeader {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: #f9f9ff;
+  border-bottom: 1px solid #c5c5d3;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 32px 32px 24px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.districtTitleWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.districtTitle {
+  color: #1e3a8a;
+  font-family: "Montserrat-Bold", Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  letter-spacing: -0.72px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.branchCount {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  width: 100%;
+}
+
+.branchCountText {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.countIcon {
+  width: 14px;
+  height: 16px;
+  color: #795900;
+  flex-shrink: 0;
+}
+
+.searchWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.searchField {
+  position: relative;
+  align-items: center;
+  background-color: #fff;
+  border: 1px solid #c5c5d3;
+  border-radius: 4px;
+  box-shadow: 0 1px 2px #0000000d;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchInput {
+  background: none;
+  border: none;
+  color: #151c27;
+  flex-grow: 1;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  padding: 14px 16px 14px 44px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.searchInput::placeholder {
+  color: #6b7280;
+}
+
+.searchInput:focus {
+  outline: 2px solid #1e3a8a;
+  outline-offset: -2px;
+}
+
+.searchIconWrapper {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  height: 18px;
+  width: 18px;
+}
+
+.noResults {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 14px;
+  padding: 24px 0;
+}
+
+.branchList {
+  align-items: flex-start;
+  align-self: stretch;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 16px;
+  overflow-y: auto;
+  padding: 24px 32px 32px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.branchCard {
+  align-items: flex-start;
+  align-self: stretch;
+  background-color: #fff;
+  border: 1px solid #c5c5d3;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 24px;
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.branchCard:hover {
+  border-color: #1e3a8a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.branchNameWrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.branchName {
+  color: #00236f;
+  font-family: "Montserrat-SemiBold", Helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 32px;
+}
+
+.branchAddress {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  padding: 0 0 12px;
+  width: 100%;
+}
+
+.addressText {
+  color: #444651;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.addressIcon {
+  width: 11px;
+  height: 11px;
+  flex-shrink: 0;
+}
+
+.pastorDetails {
+  align-items: center;
+  align-self: stretch;
+  border-top: 1px solid #dce2f3;
+  display: flex;
+  gap: 12px;
+  padding: 16px 0 0;
+  width: 100%;
+}
+
+.pastorAvatar {
+  background-color: #e7eefe;
+  border-radius: 12px;
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.pastorAvatarImage {
+  background-color: #e7eefe;
+  border-radius: 12px;
+  height: 40px;
+  width: 40px;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+
+.pastorTextWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.pastorName {
+  color: #151c27;
+  font-family: "Inter-SemiBold", Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.7px;
+  line-height: 20px;
+}
+
+.pastorRole {
+  color: #757682;
+  font-family: "Inter-Regular", Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+.map {
+  position: relative;
+  width: 100%;
+  background-color: #dce2f3;
+  overflow: hidden;
+  margin-top: 0;
+}
+
+.mapImage {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+.mapMarker {
+  position: absolute;
+  width: auto;
+  height: 48px;
+  transform: translate(-50%, -100%);
+  cursor: pointer;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.mapPoint {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background-color: #f9bd22;
+  opacity: 0.6;
+  border: 1px solid #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  transform: translate(-50%, -50%);
+}
+
+.mapPointOne {
+  top: 20%;
+  left: 70%;
+}
+
+.mapPointTwo {
+  top: 75%;
+  left: 20%;
+}
+
+.mapPointThree {
+  top: 35%;
+  left: 80%;
+}
+
+@media (max-width: 900px) {
+  .mainContent {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid #c5c5d3;
+  }
+
+  .map {
+    height: 450px;
+  }
+}

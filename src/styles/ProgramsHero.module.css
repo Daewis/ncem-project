@@ -1,0 +1,85 @@
+.heroSection {
+    align-items: center;
+    background-color: #f0f3ff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    padding: 120px 24px;
+    position: relative;
+  }
+  
+  .backgroundPattern {
+    background: radial-gradient(
+      50% 50% at 50% 50%,
+      rgba(30, 58, 138, 1) 3%,
+      rgba(30, 58, 138, 0) 3%
+    );
+    height: 100%;
+    left: 0;
+    opacity: 0.1;
+    position: absolute;
+    top: 0;
+    width: 100%;
+  }
+  
+  .content {
+    align-items: flex-start;
+    display: inline-flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 768px;
+    position: relative;
+  }
+  
+  .headingWrapper {
+    align-items: center;
+    align-self: stretch;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+  }
+  
+  .heading {
+    align-items: center;
+    color: #00236f;
+    display: flex;
+    font-family: "Montserrat-Bold", Helvetica;
+    font-size: 48px;
+    font-weight: 700;
+    justify-content: center;
+    letter-spacing: -0.96px;
+    line-height: 56px;
+    margin-top: -1px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    width: fit-content;
+  }
+  
+  .descriptionWrapper {
+    align-items: center;
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+    max-width: 672px;
+    position: relative;
+    width: 100%;
+  }
+  
+  .description {
+    color: #444651;
+    font-family: "Inter-Regular", Helvetica;
+    font-size: 18px;
+    font-weight: 400;
+    letter-spacing: 0;
+    line-height: 28px;
+    margin-top: -1px;
+    position: relative;
+    text-align: center;
+    width: fit-content;
+  }
+  

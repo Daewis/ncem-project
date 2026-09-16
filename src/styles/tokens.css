@@ -1,0 +1,24 @@
+:root {
+    /* Colors from Figma */
+    --color-primary: #00236F;
+    --color-primary-dark: #151C27;
+    --color-surface-card: #FFFFFF;
+    --color-surface-bg: #F9F9FF;
+    --color-surface-footer: #232A3A;
+    --color-accent-gold: #795900;
+    --color-accent-amber: #FBBF24;
+    --color-badge-bg: #E2E8F8;
+    --color-text-muted: #444651;
+    --color-border-light: rgba(197, 197, 211, 0.3);
+    --color-border-medium: rgba(197, 197, 211, 0.5);
+  
+    /* Typography */
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Inter', sans-serif;
+  
+    /* Layout */
+    --max-width: 1280px;
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+  }

@@ -1,0 +1,258 @@
+.heroSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: var(--max-width, 1280px);
+  margin: 0 auto;
+  padding: 120px 24px 64px;
+  gap: 24px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.title {
+  margin: 0;
+  max-width: 768px;
+  font-family: var(--font-heading, 'Montserrat', sans-serif);
+  font-weight: 700;
+  font-size: 48px;
+  line-height: 56px;
+  letter-spacing: -0.96px;
+  color: #00236F;
+}
+
+.description {
+  margin: 0;
+  max-width: 672px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 28px;
+  color: #444651;
+}
+
+.searchForm {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 768px;
+  margin-top: 8px;
+  box-sizing: border-box;
+}
+
+.searchIconWrapper {
+  position: absolute;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  pointer-events: none;
+}
+
+.searchIcon {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  opacity: 0.7;
+}
+
+.searchInput {
+  width: 100%;
+  height: 63px;
+  padding: 19px 185px 20px 48px;
+  background: #FFFFFF;
+  border: 1px solid #C5C5D3;
+  border-radius: 12px;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05);
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 18px;
+  line-height: 22px;
+  color: #151C27;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.searchInput::placeholder {
+  color: #6B7280;
+}
+
+.searchInput:focus {
+  border-color: #00236F;
+  box-shadow: 0 0 0 1px #00236F;
+}
+
+.locationButton {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.locationButton:hover {
+  background-color: rgba(226, 232, 248, 0.6);
+}
+
+.locationButton:focus-visible {
+  outline: 2px solid #00236F;
+  outline-offset: 2px;
+}
+
+.locationIcon {
+  width: 16.42px;
+  height: 16.42px;
+  object-fit: contain;
+}
+
+.locationButtonText {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.7px;
+  color: #00236F;
+  white-space: nowrap;
+}
+
+/* Results Dropdown */
+.resultsDropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background-color: #FFFFFF;
+  border: 1px solid #C5C5D3;
+  border-radius: 12px;
+  box-shadow: 0px 10px 15px -3px rgba(0, 0, 0, 0.1), 0px 4px 6px -4px rgba(0, 0, 0, 0.1);
+  max-height: 280px;
+  overflow-y: auto;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.resultItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid #ECECF2;
+  transition: background-color 0.15s ease;
+}
+
+.resultItem:last-child {
+  border-bottom: none;
+}
+
+.resultItem:hover {
+  background-color: #F9F9FF;
+}
+
+.resultBadge {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #795900;
+  background-color: #FFF9E6;
+  border: 1px solid #F9BD22;
+  border-radius: 4px;
+  padding: 2px 6px;
+  flex-shrink: 0;
+}
+
+.branchInfo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow: hidden;
+}
+
+.resultTitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 15px;
+  font-weight: 600;
+  color: #00236F;
+  white-space: nowrap;
+}
+
+.resultSubtitle {
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 13px;
+  color: #757682;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.noResults {
+  margin: 0;
+  padding: 16px;
+  font-family: var(--font-body, 'Inter', sans-serif);
+  font-size: 14px;
+  color: #757682;
+  text-align: center;
+}
+
+.srOnly {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 80px 16px 40px;
+    gap: 16px;
+  }
+
+  .title {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  .description {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
+  .searchInput {
+    font-size: 16px;
+    padding-right: 150px;
+  }
+
+  .locationButtonText {
+    font-size: 12px;
+  }
+
+  .branchInfo {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+}
