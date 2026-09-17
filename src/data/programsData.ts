@@ -99,35 +99,10 @@ export const programsData: Program[] = [
     ],
   },
   {
-    slug: "mens-fellowship",
-    title: "Men's Fellowship",
-    category: "monthly",
-    showInGrid: true,
-    badgeLabel: "Monthly",
-    frequencyLabel: "Second Friday",
-    timeLabel: "6:30 PM - 8:30 PM",
-    locationLabel: "Camp Ground Chapel",
-    cardDescription:
-      "A dedicated time for men to gather, build brotherhood, and grow together in the Word. Focusing on leadership, family, and faith in today's world.",
-    cardImage: mensFellowshipImage,
-    tag: "FELLOWSHIP",
-    tagIcon: studyIcon, 
-    breadcrumbLabels: ["PROGRAMS", "FELLOWSHIP"],
-    heroDescription:
-      "A dedicated time for men to gather, build brotherhood, and grow together in the Word — centered on leadership, family, and faith in today's world.",
-    heroImage: mensFellowshipImage,
-    serviceDetails: [
-      { label: "Frequency", value: "Second Friday" },
-      { label: "Time", value: "6:30 PM - 8:30 PM" },
-      { label: "Venue", value: "Camp Ground Chapel" },
-    ],
-    // TODO  aboutParagraphs, expectations, and upcomingDates not written yet for mens fellowship
-  },
-  {
     slug: "word-encounter",
     title: "Word Encounter",
     category: "monthly",
-    showInGrid: false, // not yet laid out on the grid — currently only used in Related Programs
+    showInGrid: false, 
     badgeLabel: "Monthly",
     frequencyLabel: "Every Wednesday",
     timeLabel: "6:00 PM - 7:30 PM",
@@ -141,7 +116,6 @@ export const programsData: Program[] = [
     heroDescription:
       "A deep dive into scripture focusing on practical application for modern believers.",
     heroImage: wordEncounterImage,
-    // NOTE(Dave): placeholder detail content — this program didn't have a detail page yet.
     serviceDetails: [
       { label: "Frequency", value: "Weekly" },
       { label: "Time", value: "6:00 PM - 7:30 PM" },
@@ -228,6 +202,31 @@ export const programsData: Program[] = [
       "A short debrief and prayer to close out the day.",
     ],
     upcomingDates: [{ month: "NOV", day: "22", title: "Ojo District Outreach" }],
+  },
+  {
+    slug: "mens-fellowship",
+    title: "Men's Fellowship",
+    category: "monthly",
+    showInGrid: true,
+    badgeLabel: "Monthly",
+    frequencyLabel: "Second Friday",
+    timeLabel: "6:30 PM - 8:30 PM",
+    locationLabel: "Camp Ground Chapel",
+    cardDescription:
+      "A dedicated time for men to gather, build brotherhood, and grow together in the Word. Focusing on leadership, family, and faith in today's world.",
+    cardImage: mensFellowshipImage,
+    tag: "FELLOWSHIP",
+    tagIcon: studyIcon, 
+    breadcrumbLabels: ["PROGRAMS", "FELLOWSHIP"],
+    heroDescription:
+      "A dedicated time for men to gather, build brotherhood, and grow together in the Word — centered on leadership, family, and faith in today's world.",
+    heroImage: mensFellowshipImage,
+    serviceDetails: [
+      { label: "Frequency", value: "Second Friday" },
+      { label: "Time", value: "6:30 PM - 8:30 PM" },
+      { label: "Venue", value: "Camp Ground Chapel" },
+    ],
+    // TODO  aboutParagraphs, expectations, and upcomingDates not written yet for mens fellowship
   },
 ];
 

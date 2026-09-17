@@ -11,9 +11,7 @@ export default function ProgramDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const program = slug ? getProgramBySlug(slug) : undefined;
 
-  const hasContent = !!program?.aboutParagraphs?.length;
-
-  if (!program || !hasContent) {
+  if (!program || !program.aboutParagraphs?.length) {
     return (
       <>
         <TopNavBar active="programs" />
@@ -33,7 +31,6 @@ export default function ProgramDetailPage() {
   return (
     <>
       <TopNavBar active="programs" />
-
       <main className={styles.main}>
         <ProgramHero
           image={program.heroImage}
@@ -43,14 +40,13 @@ export default function ProgramDetailPage() {
           breadcrumbLabels={program.breadcrumbLabels}
         />
         <SectionMainContent
-          serviceDetails={program.serviceDetails}
+          serviceDetails={program.serviceDetails ?? []}
           aboutParagraphs={program.aboutParagraphs}
-          expectations={program.expectations}
-          upcomingDates={program.upcomingDates}
+          expectations={program.expectations ?? []}
+          upcomingDates={program.upcomingDates ?? []}
         />
         <SectionRelated currentSlug={program.slug} />
       </main>
-
       <Footer activeNav="programs" />
     </>
   );

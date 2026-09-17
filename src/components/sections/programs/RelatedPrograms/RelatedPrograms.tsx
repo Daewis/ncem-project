@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import arrowIcon from "@/assets/programs/iconsRelatedProgram/icon4.svg";
 import { getRelatedPrograms } from "@/data/programsData";
 import classes from "@/styles/RelatedPrograms.module.css";
 
 interface SectionRelatedProps {
-  /** Slug of the program currently being viewed, so it's excluded from the list */
   currentSlug: string;
 }
 
@@ -28,7 +26,9 @@ export const SectionRelated = ({ currentSlug }: SectionRelatedProps) => {
 
           <Link to="/programs" className={classes.viewAll}>
             <span>View All Programs</span>
-            <img className={classes.viewAllIcon} alt="" aria-hidden="true" src={arrowIcon} />
+            <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7.10208 5.25H0V4.08333H7.10208L3.83542 0.816667L4.66667 0L9.33333 4.66667L4.66667 9.33333L3.83542 8.51667L7.10208 5.25Z" fill="#00236F"/>
+            </svg>
           </Link>
         </header>
 
