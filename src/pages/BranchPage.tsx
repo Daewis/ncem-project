@@ -21,15 +21,12 @@ export default function BranchPage() {
   const branch = branchSlug ? getBranchBySlug(branchSlug) : undefined;
   const district = branch ? getDistrictBySlug(branch.districtSlug) : undefined;
 
-  // If the URL's district segment doesn't match the branch's real district,
-  // still render using the branch's actual district rather than 404ing —
-  // more forgiving for stale/typo'd links.
   const resolvedDistrictSlug = district?.slug ?? districtSlug;
 
   if (!branch || !district || !resolvedDistrictSlug) {
     return (
       <>
-        <TopNavBar active="locations" />
+        <TopNavBar active="locations" variant="branch" />
         <main className={styles.main} style={{ padding: "160px 24px", textAlign: "center" }}>
           <h1>Branch not found</h1>
           <p>We couldn't find the branch you're looking for.</p>
@@ -44,7 +41,7 @@ export default function BranchPage() {
 
   return (
     <>
-      <TopNavBar active="locations" />
+      <TopNavBar active="locations" variant="branch" />
       <main className={styles.main}>
         <div className={styles.content}>
           <HeroSection

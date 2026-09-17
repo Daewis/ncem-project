@@ -17,7 +17,7 @@ export default function DistrictPage() {
   if (!district) {
     return (
       <>
-        <TopNavBar active="locations" />
+        <TopNavBar active="locations" variant="district" />
         <main className={styles.main} style={{ padding: "160px 24px", textAlign: "center" }}>
           <h1>District not found</h1>
           <p>We couldn't find the district you're looking for.</p>
@@ -33,7 +33,7 @@ export default function DistrictPage() {
 
   return (
     <>
-      <TopNavBar active="locations" />
+       <TopNavBar active="locations" variant="district" />
       <main className={styles.main}>
         <MainContentSection district={district} branches={branches} />
         <AccordionSection otherDistricts={otherDistricts} />
