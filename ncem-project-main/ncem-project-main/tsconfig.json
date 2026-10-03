@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+      "jsx": "react-jsx",
+      "moduleResolution": "bundler",
+      "module": "ESNext",
+      "target": "ESNext",
+      "lib": ["ESNext", "DOM"],
+      "allowJs": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+      "strict": true,
+      "noEmit": true,
+      "paths": {
+        "@/*": ["./src/*"]
+      }
+    }
+  }
