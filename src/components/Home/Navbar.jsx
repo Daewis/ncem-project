@@ -17,11 +17,11 @@ const useActiveKey = () => {
   const { pathname } = useLocation();
   if (pathname === '/') return 'home';
   if (pathname.startsWith('/about')) return 'about';
-  if (pathname.startsWith('/locations')) return 'locations';
-  if (pathname.startsWith('/contact')) return 'contact';
-  if (pathname.startsWith('/givenow')) return 'home'; // Give Now is a home CTA, not a tab
   if (pathname.startsWith('/events')) return 'events';
+  if (pathname.startsWith('/locations')) return 'locations';
   if (pathname.startsWith('/resources')) return 'resources';
+  if (pathname.startsWith('/contact')) return 'contact';
+  if (pathname.startsWith('/give') || pathname.startsWith('/givenow')) return 'home';
   return null;
 };
 
@@ -39,7 +39,6 @@ const useVariant = () => {
 const Navbar = () => {
   const active = useActiveKey();
   const variant = useVariant();
-  const isHome = active === 'home';
   const isLocations = active === 'locations';
 
   const navigate = useNavigate();
@@ -123,99 +122,93 @@ const Navbar = () => {
   const renderDesktopCta = () => {
     if (variant === 'branch') {
       return (
-        <Link to="/join" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#1e3a8a] text-white font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,transform] duration-150 hover:bg-[#17316f] hover:-translate-y-0.5">
+        <Link
+          to="/join"
+          onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#00236F] text-white font-bold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-[12px] no-underline shadow-sm whitespace-nowrap transition-opacity duration-150 hover:opacity-90"
+        >
           Join Us
         </Link>
       );
     }
     if (variant === 'district') {
       return (
-        <Link to="/join" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#795900] text-[#261a00] font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,transform] duration-150 hover:bg-[#6a4e00] hover:-translate-y-0.5">
+        <Link
+          to="/join"
+          onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#FFC329] text-[#6F5100] font-bold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-[12px] no-underline shadow-sm whitespace-nowrap transition-opacity duration-150 hover:opacity-90"
+        >
           Join Us
         </Link>
       );
     }
-    if (isHome) {
-      return (
-        <Link to="/givenow" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#f9bd22] text-[#00164e] font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2.5 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,transform] duration-150 hover:bg-[#e5ab19] hover:-translate-y-0.5">
-          Give Now
-        </Link>
-      );
-    }
-    if (!isLocations) {
-      return (
-        <Link to="/locations" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#1e3a8a] text-[#90a8ff] font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2.5 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,color,transform] duration-150 hover:bg-[#17316f] hover:text-white hover:-translate-y-0.5">
-          Find a Church
-        </Link>
-      );
-    }
-    return null;
+    return (
+      <Link
+        to="/give"
+        onClick={handleNavClick}
+        className="inline-flex items-center justify-center bg-[#FFC329] text-[#6F5100] font-bold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-[12px] no-underline shadow-sm whitespace-nowrap transition-opacity duration-150 hover:opacity-90"
+      >
+        Give
+      </Link>
+    );
   };
 
   const renderMobileCta = () => {
     if (variant === 'branch') {
       return (
-        <Link to="/join" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#1e3a8a] text-white font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
+        <Link
+          to="/join"
+          onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#00236F] text-white font-bold text-[15px] leading-[22px] px-5 py-3.5 rounded-[12px] no-underline shadow-sm whitespace-nowrap"
+        >
           Join Us
         </Link>
       );
     }
     if (variant === 'district') {
       return (
-        <Link to="/join" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#f9bd22] text-[#00164e] font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
+        <Link
+          to="/join"
+          onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#FFC329] text-[#6F5100] font-bold text-[15px] leading-[22px] px-5 py-3.5 rounded-[12px] no-underline shadow-sm whitespace-nowrap"
+        >
           Join Us
         </Link>
       );
     }
-    if (isHome) {
-      return (
-        <Link to="/givenow" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#f9bd22] text-[#00164e] font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
-          Give Now
-        </Link>
-      );
-    }
-    if (!isLocations) {
-      return (
-        <Link to="/locations" onClick={handleNavClick}
-          className="inline-flex items-center justify-center bg-[#1e3a8a] text-white font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
-          Find a Church
-        </Link>
-      );
-    }
-    return null;
+    return (
+      <Link
+        to="/give"
+        onClick={handleNavClick}
+        className="inline-flex items-center justify-center bg-[#FFC329] text-[#6F5100] font-bold text-[15px] leading-[22px] px-5 py-3.5 rounded-[12px] no-underline shadow-sm whitespace-nowrap text-center"
+      >
+        Give
+      </Link>
+    );
   };
-
-  const activeLineGold2 = variant === 'branch';
 
   return (
     <header
-      className="fixed top-0 left-0 w-full z-50 flex items-center box-border bg-[rgba(249,249,255,0.95)] backdrop-blur border-b border-[#c5c5d3]"
-      style={{ height: 'var(--header-height, 81px)' }}
+      className="fixed top-0 left-0 w-full z-50 flex items-center box-border bg-white border-b border-[#f0f0f0]"
+      style={{ height: '80px' }}
     >
       <div
-        className="w-full max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between box-border gap-3"
+        className="w-full max-w-[1280px] mx-auto px-6 flex items-center justify-between box-border gap-4"
       >
-        {/* Brand */}
+        {/* Brand Logo & Name */}
         <Link to="/" className="inline-flex items-center gap-3 no-underline" aria-label="NCEM Home">
-          <img src={Logo} alt="NCEM Logo" className="w-9 h-9 md:w-12 md:h-12 object-contain" />
+          <img src={Logo} alt="New Creature Evangelical Ministry Logo" className="w-12 h-12 object-contain" />
           <span
-            className="font-bold text-blue"
-            style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 'clamp(18px, 2vw, 24px)', lineHeight: '30px' }}
+            className="font-bold text-[#00236F]"
+            style={{ fontFamily: 'Montserrat, sans-serif', fontSize: '24px', lineHeight: '30px' }}
           >
             NCEM
           </span>
         </Link>
 
-        {/* Desktop nav links (hidden below 860px) */}
+        {/* Desktop nav links */}
         <nav aria-label="Main navigation" className="hidden lg:block">
-          <ul className="flex items-center gap-6 lg:gap-8 list-none m-0 p-0">
+          <ul className="flex items-center gap-8 list-none m-0 p-0">
             {navLinks.map((link) => {
               const isActive = link.key === active;
               return (
@@ -223,22 +216,22 @@ const Navbar = () => {
                   <Link
                     to={link.href}
                     aria-current={isActive ? 'page' : undefined}
-                    className={`relative inline-flex items-center no-underline transition-colors duration-150 hover:text-blue ${
-                      isActive ? 'text-blue font-bold' : 'text-[#444651] font-semibold'
+                    className={`relative inline-flex items-center no-underline transition-colors duration-150 hover:text-[#00236F] ${
+                      isActive ? 'text-[#00236F] font-bold' : 'text-[#444651] font-semibold'
                     }`}
                     style={{
                       fontFamily: 'Inter, sans-serif',
                       fontSize: '14px',
                       lineHeight: '20px',
                       letterSpacing: '0.7px',
-                      padding: '6px 0',
+                      padding: '4px 0',
                     }}
                   >
                     <span>{link.label}</span>
                     {isActive && (
                       <span
-                        className="absolute left-0 bottom-0 w-full h-0.5 rounded"
-                        style={{ backgroundColor: activeLineGold2 ? '#ffc329' : '#795900' }}
+                        className="absolute left-0 bottom-0 w-full h-[2px]"
+                        style={{ backgroundColor: '#FFC329' }}
                         aria-hidden="true"
                       />
                     )}
@@ -250,7 +243,7 @@ const Navbar = () => {
         </nav>
 
         {/* Action area (desktop) */}
-        <div className="hidden md:flex items-center gap-3 lg:gap-4">
+        <div className="hidden md:flex items-center gap-4">
           {variant === 'branch' && (
             <div className="relative flex items-center" ref={wrapperRef}>
               <button
@@ -277,7 +270,7 @@ const Navbar = () => {
                   <input
                     ref={inputRef}
                     type="text"
-                    className="w-full box-border border border-[#c5c5d3] rounded p-2 text-sm text-[#151c27] outline-none focus:outline-2 focus:outline-[#1e3a8a] focus:-outline-offset-1"
+                    className="w-full box-border border border-[#c5c5d3] rounded p-2 text-sm text-[#151c27] outline-none focus:outline-2 focus:outline-[#00236F] focus:-outline-offset-1"
                     placeholder="Search branches..."
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
@@ -297,7 +290,7 @@ const Navbar = () => {
                               className="all-unset flex flex-col w-full box-border px-2.5 py-2 cursor-pointer rounded hover:bg-[#f0f3ff]"
                               onClick={() => goToBranch(b.slug, b.districtSlug)}
                             >
-                              <span className="font-semibold text-sm text-blue">{b.name}</span>
+                              <span className="font-semibold text-sm text-[#00236F]">{b.name}</span>
                               <span className="text-xs text-[#757682]">{b.addressShort}</span>
                             </button>
                           </li>
@@ -325,18 +318,18 @@ const Navbar = () => {
         >
           <span className="relative inline-block w-6 h-[18px]">
             <span
-              className="absolute left-0 w-full h-0.5 bg-blue rounded transition-all duration-200"
+              className="absolute left-0 w-full h-0.5 bg-[#00236F] rounded transition-all duration-200"
               style={{
                 top: mobileMenuOpen ? '8px' : '0',
                 transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
               }}
             />
             <span
-              className="absolute left-0 w-full h-0.5 bg-blue rounded transition-opacity duration-200"
+              className="absolute left-0 w-full h-0.5 bg-[#00236F] rounded transition-opacity duration-200"
               style={{ top: '8px', opacity: mobileMenuOpen ? '0' : '1' }}
             />
             <span
-              className="absolute left-0 w-full h-0.5 bg-blue rounded transition-all duration-200"
+              className="absolute left-0 w-full h-0.5 bg-[#00236F] rounded transition-all duration-200"
               style={{
                 top: mobileMenuOpen ? '8px' : '16px',
                 transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
@@ -353,8 +346,8 @@ const Navbar = () => {
           id="mobile-nav-menu"
           className="lg:hidden fixed left-0 w-full bg-white border-t border-[#e5e5ee] shadow-xl p-4 pb-6 box-border z-40 overflow-y-auto"
           style={{
-            top: 'var(--header-height, 81px)',
-            maxHeight: 'calc(100vh - var(--header-height, 81px))',
+            top: '80px',
+            maxHeight: 'calc(100vh - 80px)',
             animation: 'mobileDrawerFadeIn 0.18s ease-out',
           }}
           role="dialog"
@@ -371,8 +364,8 @@ const Navbar = () => {
                     onClick={handleNavClick}
                     className={`block w-full box-border px-3 py-3.5 rounded-lg border-b border-[#eeeef4] no-underline transition-colors duration-150 ${
                       isActive
-                        ? 'text-blue font-semibold bg-[#f0f3ff]'
-                        : 'text-[#444651] font-semibold hover:bg-[#f0f3ff] hover:text-blue'
+                        ? 'text-[#00236F] font-bold bg-[#f0f3ff]'
+                        : 'text-[#444651] font-semibold hover:bg-[#f0f3ff] hover:text-[#00236F]'
                     }`}
                     style={{ fontFamily: 'Inter, sans-serif', fontSize: '16px', lineHeight: '22px' }}
                   >
