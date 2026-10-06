@@ -1,5 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import Footer from "../components/Home/Footer";
 import HeroSection from "../components/Locations/BranchPage/HeroSection";
 import MainContentSection from "../components/Locations/BranchPage/MainContentSection";
 import OtherChurchesSection from "../components/Locations/BranchPage/OtherChurchesSection";
@@ -18,7 +17,7 @@ const BranchPage = () => {
 
   if (!branch || !district) {
     return (
-      <div className="min-h-screen bg-[#F9F9FF] pt-16 lg:pt-20 px-6 py-16 text-center">
+      <div className="px-6 py-16 text-center min-h-[60vh] flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold text-blue mb-3">Branch not found</h1>
         <p className="text-offwhite mb-4">
           We couldn't find the branch you're looking for.
@@ -29,7 +28,6 @@ const BranchPage = () => {
         >
           Back to Locations
         </Link>
-        <Footer />
       </div>
     );
   }
@@ -37,7 +35,7 @@ const BranchPage = () => {
   const nearbyBranches = getNearbyBranches(branch.slug, 2);
 
   return (
-    <div className="min-h-screen bg-[#F9F9FF] pt-16 lg:pt-20">
+    <div className="bg-[#F9F9FF]">
       <div className="flex flex-col w-full self-stretch items-center gap-12 lg:gap-24 pb-16 lg:pb-[120px]">
         <HeroSection branch={branch} districtName={district.name} />
         <MainContentSection branch={branch} />
@@ -46,7 +44,6 @@ const BranchPage = () => {
           <CTASection branch={branch} />
         </div>
       </div>
-      <Footer />
     </div>
   );
 };

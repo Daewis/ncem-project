@@ -1,5 +1,4 @@
 import { useParams, Link } from "react-router-dom";
-import Footer from "../components/Home/Footer";
 import MainContentSection from "../components/Locations/DistrictPage/MainContentSection";
 import AccordionSection from "../components/Locations/DistrictPage/AccordionSection";
 import {
@@ -14,7 +13,7 @@ const DistrictPage = () => {
 
   if (!district) {
     return (
-      <div className="min-h-screen bg-[#F9F9FF] pt-16 lg:pt-20 px-6 py-16 text-center">
+      <div className="px-6 py-16 text-center min-h-[60vh] flex flex-col items-center justify-center">
         <h1 className="text-2xl font-bold text-blue mb-3">District not found</h1>
         <p className="text-offwhite mb-4">
           We couldn't find the district you're looking for.
@@ -25,7 +24,6 @@ const DistrictPage = () => {
         >
           Back to Locations
         </Link>
-        <Footer />
       </div>
     );
   }
@@ -34,10 +32,9 @@ const DistrictPage = () => {
   const otherDistricts = getOtherDistricts(district.slug);
 
   return (
-    <div className="min-h-screen bg-[#F9F9FF] pt-16 lg:pt-20">
+    <div className="bg-[#F9F9FF]">
       <MainContentSection district={district} branches={branches} />
       <AccordionSection otherDistricts={otherDistricts} />
-      <Footer />
     </div>
   );
 };

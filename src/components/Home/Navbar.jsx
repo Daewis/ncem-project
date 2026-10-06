@@ -1,118 +1,394 @@
-import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import Logo from '../../assets/New Creature Evangelical Ministry Logo.png';
+import { branches } from '../../data/locationsData';
+
+const navLinks = [
+  { key: 'home', label: 'Home', href: '/' },
+  { key: 'about', label: 'About', href: '/about' },
+  { key: 'events', label: 'Events', href: '/events' },
+  { key: 'locations', label: 'Locations', href: '/locations' },
+  { key: 'resources', label: 'Resources', href: '/resources' },
+  { key: 'contact', label: 'Contact', href: '/contact' },
+];
+
+// Derive the active nav key from the current URL pathname
+const useActiveKey = () => {
+  const { pathname } = useLocation();
+  if (pathname === '/') return 'home';
+  if (pathname.startsWith('/about')) return 'about';
+  if (pathname.startsWith('/locations')) return 'locations';
+  if (pathname.startsWith('/contact')) return 'contact';
+  if (pathname.startsWith('/givenow')) return 'home'; // Give Now is a home CTA, not a tab
+  if (pathname.startsWith('/events')) return 'events';
+  if (pathname.startsWith('/resources')) return 'resources';
+  return null;
+};
+
+// Derive the navbar variant from the current route
+const useVariant = () => {
+  const { pathname } = useLocation();
+  const parts = pathname.split('/').filter(Boolean);
+  // /locations/:districtSlug/:branchSlug
+  if (parts.length >= 3 && parts[0] === 'locations') return 'branch';
+  // /locations/:districtSlug
+  if (parts.length === 2 && parts[0] === 'locations') return 'district';
+  return null;
+};
 
 const Navbar = () => {
-    const [menuOpen, setMenuOpen] = useState(false);
-    const menuRef = useRef(null);
-    const hamburgerRef = useRef(null);
+  const active = useActiveKey();
+  const variant = useVariant();
+  const isHome = active === 'home';
+  const isLocations = active === 'locations';
 
-    // Close on outside click
-    useEffect(() => {
-        if (!menuOpen) return;
-        const handleClickOutside = (e) => {
-            if (
-                menuRef.current && !menuRef.current.contains(e.target) &&
-                hamburgerRef.current && !hamburgerRef.current.contains(e.target)
-            ) {
-                setMenuOpen(false);
-            }
-        };
-        document.addEventListener('mousedown', handleClickOutside);
-        return () => document.removeEventListener('mousedown', handleClickOutside);
-    }, [menuOpen]);
+  const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
+  const [query, setQuery] = useState('');
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const inputRef = useRef(null);
+  const wrapperRef = useRef(null);
+  const mobileMenuRef = useRef(null);
+  const hamburgerRef = useRef(null);
 
-    // Lock body scroll when menu open
-    useEffect(() => {
-        document.body.style.overflow = menuOpen ? 'hidden' : '';
-        return () => { document.body.style.overflow = ''; };
-    }, [menuOpen]);
+  const q = query.trim().toLowerCase();
+  const matches =
+    q.length > 0
+      ? branches
+          .filter(
+            (b) =>
+              b.name.toLowerCase().includes(q) ||
+              b.addressShort.toLowerCase().includes(q) ||
+              b.pastorName.toLowerCase().includes(q)
+          )
+          .slice(0, 6)
+      : [];
 
-    const closeMenu = () => setMenuOpen(false);
+  useEffect(() => {
+    if (searchOpen) inputRef.current?.focus();
+  }, [searchOpen]);
 
-    return (
-        <header className="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-offwhite/30 shadow-sm">
-            <div className='flex items-center justify-between px-4 sm:px-10 md:px-10 lg:px-10 py-4 max-w-7xl mx-auto'>
-                {/* Navbar Logo */}
-                <div className='flex items-center gap-2'>
-                    <Link to='/' onClick={closeMenu}>
-                        <img src={Logo} alt="New Creature Evangelical Ministry Logo" className="h-10 w-auto" />
-                    </Link>
-                    <Link to='/' onClick={closeMenu} className='w-40 text-blue font-bold text-[24px] no-underline'>
-                        NCEM
-                    </Link>
-                </div>
+  useEffect(() => {
+    if (!searchOpen) return;
+    const handleClickOutside = (e) => {
+      if (wrapperRef.current && !wrapperRef.current.contains(e.target)) {
+        setSearchOpen(false);
+        setQuery('');
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [searchOpen]);
 
-                {/* Desktop Navbar links */}
-                <nav className='nav-item hidden md:flex items-center justify-between gap-5 font-semibold'>
-                    <Link to='/' className="no-underline text-inherit">Home</Link>
-                    <Link to='/about' className="no-underline text-inherit">About</Link>
-                    <Link to='/locations' className="no-underline text-inherit">Locations</Link>
-                    <Link className="no-underline text-inherit cursor-pointer">Events</Link>
-                    <Link className="no-underline text-inherit cursor-pointer">Resources</Link>
-                    <Link to='/contact' className="no-underline text-inherit">Contact</Link>
-                </nav>
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handleClickOutside = (e) => {
+      if (
+        mobileMenuRef.current && !mobileMenuRef.current.contains(e.target) &&
+        hamburgerRef.current && !hamburgerRef.current.contains(e.target)
+      ) {
+        setMobileMenuOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [mobileMenuOpen]);
 
-                {/* Desktop Navbar Button */}
-                <button className='hidden md:inline-flex bg-yellow-300 px-5 py-2 rounded-md font-semibold cursor-pointer no-underline'>
-                    <Link to='/givenow' className="no-underline text-inherit">Give now</Link>
-                </button>
+  useEffect(() => {
+    document.body.style.overflow = mobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileMenuOpen]);
 
-                {/* Mobile hamburger button */}
-                <button
-                    ref={hamburgerRef}
-                    type="button"
-                    className="md:hidden inline-flex items-center justify-center w-10 h-10 p-0 bg-transparent border-none cursor-pointer"
-                    aria-label={menuOpen ? "Close menu" : "Open menu"}
-                    aria-expanded={menuOpen}
-                    aria-controls="mobile-nav-menu"
-                    onClick={() => setMenuOpen(v => !v)}
+  const goToBranch = (slug, districtSlug) => {
+    navigate(`/locations/${districtSlug}/${slug}`);
+    setSearchOpen(false);
+    setQuery('');
+    setMobileMenuOpen(false);
+  };
+
+  const handleNavClick = () => setMobileMenuOpen(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (matches.length > 0) {
+      goToBranch(matches[0].slug, matches[0].districtSlug);
+    } else if (q.length > 0) {
+      navigate('/locations');
+      setSearchOpen(false);
+      setQuery('');
+      setMobileMenuOpen(false);
+    }
+  };
+
+  const renderDesktopCta = () => {
+    if (variant === 'branch') {
+      return (
+        <Link to="/join" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#1e3a8a] text-white font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,transform] duration-150 hover:bg-[#17316f] hover:-translate-y-0.5">
+          Join Us
+        </Link>
+      );
+    }
+    if (variant === 'district') {
+      return (
+        <Link to="/join" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#795900] text-[#261a00] font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,transform] duration-150 hover:bg-[#6a4e00] hover:-translate-y-0.5">
+          Join Us
+        </Link>
+      );
+    }
+    if (isHome) {
+      return (
+        <Link to="/givenow" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#f9bd22] text-[#00164e] font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2.5 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,transform] duration-150 hover:bg-[#e5ab19] hover:-translate-y-0.5">
+          Give Now
+        </Link>
+      );
+    }
+    if (!isLocations) {
+      return (
+        <Link to="/locations" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#1e3a8a] text-[#90a8ff] font-semibold text-[14px] leading-5 tracking-[0.7px] px-6 py-2.5 rounded-xl no-underline shadow-sm whitespace-nowrap transition-[background-color,color,transform] duration-150 hover:bg-[#17316f] hover:text-white hover:-translate-y-0.5">
+          Find a Church
+        </Link>
+      );
+    }
+    return null;
+  };
+
+  const renderMobileCta = () => {
+    if (variant === 'branch') {
+      return (
+        <Link to="/join" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#1e3a8a] text-white font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
+          Join Us
+        </Link>
+      );
+    }
+    if (variant === 'district') {
+      return (
+        <Link to="/join" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#f9bd22] text-[#00164e] font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
+          Join Us
+        </Link>
+      );
+    }
+    if (isHome) {
+      return (
+        <Link to="/givenow" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#f9bd22] text-[#00164e] font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
+          Give Now
+        </Link>
+      );
+    }
+    if (!isLocations) {
+      return (
+        <Link to="/locations" onClick={handleNavClick}
+          className="inline-flex items-center justify-center bg-[#1e3a8a] text-white font-semibold text-[15px] leading-[22px] px-5 py-3.5 rounded-xl no-underline shadow-sm whitespace-nowrap">
+          Find a Church
+        </Link>
+      );
+    }
+    return null;
+  };
+
+  const activeLineGold2 = variant === 'branch';
+
+  return (
+    <header
+      className="fixed top-0 left-0 w-full z-50 flex items-center box-border bg-[rgba(249,249,255,0.95)] backdrop-blur border-b border-[#c5c5d3]"
+      style={{ height: 'var(--header-height, 81px)' }}
+    >
+      <div
+        className="w-full max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between box-border gap-3"
+      >
+        {/* Brand */}
+        <Link to="/" className="inline-flex items-center gap-3 no-underline" aria-label="NCEM Home">
+          <img src={Logo} alt="NCEM Logo" className="w-9 h-9 md:w-12 md:h-12 object-contain" />
+          <span
+            className="font-bold text-blue"
+            style={{ fontFamily: 'Montserrat, sans-serif', fontSize: 'clamp(18px, 2vw, 24px)', lineHeight: '30px' }}
+          >
+            NCEM
+          </span>
+        </Link>
+
+        {/* Desktop nav links (hidden below 860px) */}
+        <nav aria-label="Main navigation" className="hidden lg:block">
+          <ul className="flex items-center gap-6 lg:gap-8 list-none m-0 p-0">
+            {navLinks.map((link) => {
+              const isActive = link.key === active;
+              return (
+                <li key={link.key}>
+                  <Link
+                    to={link.href}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`relative inline-flex items-center no-underline transition-colors duration-150 hover:text-blue ${
+                      isActive ? 'text-blue font-bold' : 'text-[#444651] font-semibold'
+                    }`}
+                    style={{
+                      fontFamily: 'Inter, sans-serif',
+                      fontSize: '14px',
+                      lineHeight: '20px',
+                      letterSpacing: '0.7px',
+                      padding: '6px 0',
+                    }}
+                  >
+                    <span>{link.label}</span>
+                    {isActive && (
+                      <span
+                        className="absolute left-0 bottom-0 w-full h-0.5 rounded"
+                        style={{ backgroundColor: activeLineGold2 ? '#ffc329' : '#795900' }}
+                        aria-hidden="true"
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </nav>
+
+        {/* Action area (desktop) */}
+        <div className="hidden md:flex items-center gap-3 lg:gap-4">
+          {variant === 'branch' && (
+            <div className="relative flex items-center" ref={wrapperRef}>
+              <button
+                type="button"
+                className="all-unset cursor-pointer inline-flex items-center justify-center w-[18px] h-[18px]"
+                aria-label="Search branches"
+                aria-expanded={searchOpen}
+                onClick={() => setSearchOpen((v) => !v)}
+              >
+                <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M12.9167 11.6667H12.0917L11.8 11.3833C12.8083 10.2083 13.4167 8.68333 13.4167 7.02083C13.4167 3.34167 10.4333 0.358337 6.75417 0.358337C3.075 0.358337 0.0916748 3.34167 0.0916748 7.02083C0.0916748 10.7 3.075 13.6833 6.75417 13.6833C8.41667 13.6833 9.94167 13.075 11.1167 12.0667L11.4 12.3583V13.1833L16.4167 18.1917L17.925 16.6833L12.9167 11.6667ZM6.75417 11.6667C4.175 11.6667 2.09167 9.58333 2.09167 7.02083C2.09167 4.45833 4.175 2.375 6.75417 2.375C9.33333 2.375 11.4167 4.45833 11.4167 7.02083C11.4167 9.58333 9.33333 11.6667 6.75417 11.6667Z"
+                    fill="#444651"
+                  />
+                </svg>
+              </button>
+
+              {searchOpen && (
+                <form
+                  className="absolute right-0 bg-white border border-[#c5c5d3] rounded-lg shadow-md p-2 z-[60] w-[calc(100vw-32px)] md:w-[280px]"
+                  style={{ top: 'calc(100% + 12px)' }}
+                  onSubmit={handleSubmit}
                 >
-                    <span className="relative inline-block w-6 h-[18px]">
-                        <span
-                            className="absolute left-0 w-full h-0.5 bg-blue rounded transition-all duration-200"
-                            style={{ top: menuOpen ? '8px' : '0', transform: menuOpen ? 'rotate(45deg)' : 'none' }}
-                        />
-                        <span
-                            className="absolute left-0 w-full h-0.5 bg-blue rounded transition-opacity duration-200"
-                            style={{ top: '8px', opacity: menuOpen ? '0' : '1' }}
-                        />
-                        <span
-                            className="absolute left-0 w-full h-0.5 bg-blue rounded transition-all duration-200"
-                            style={{ top: menuOpen ? '8px' : '16px', transform: menuOpen ? 'rotate(-45deg)' : 'none' }}
-                        />
-                    </span>
-                </button>
+                  <input
+                    ref={inputRef}
+                    type="text"
+                    className="w-full box-border border border-[#c5c5d3] rounded p-2 text-sm text-[#151c27] outline-none focus:outline-2 focus:outline-[#1e3a8a] focus:-outline-offset-1"
+                    placeholder="Search branches..."
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    aria-label="Search branches by name, address, or pastor"
+                  />
+                  {q.length > 0 && (
+                    <ul className="list-none m-0 mt-2 p-0 max-h-60 overflow-y-auto">
+                      {matches.length === 0 ? (
+                        <li className="px-2.5 py-2 text-[13px] text-[#757682]">
+                          No branches match "{query}"
+                        </li>
+                      ) : (
+                        matches.map((b) => (
+                          <li key={b.slug}>
+                            <button
+                              type="button"
+                              className="all-unset flex flex-col w-full box-border px-2.5 py-2 cursor-pointer rounded hover:bg-[#f0f3ff]"
+                              onClick={() => goToBranch(b.slug, b.districtSlug)}
+                            >
+                              <span className="font-semibold text-sm text-blue">{b.name}</span>
+                              <span className="text-xs text-[#757682]">{b.addressShort}</span>
+                            </button>
+                          </li>
+                        ))
+                      )}
+                    </ul>
+                  )}
+                </form>
+              )}
             </div>
+          )}
 
-            {/* Mobile drawer */}
-            {menuOpen && (
-                <div
-                    ref={menuRef}
-                    id="mobile-nav-menu"
-                    className="md:hidden absolute top-full left-0 w-full bg-white border-t border-offwhite/30 shadow-lg px-4 py-6 box-border"
-                    role="dialog"
-                    aria-label="Mobile navigation"
-                >
-                    <nav className="flex flex-col gap-1">
-                        <Link to='/' onClick={closeMenu} className="no-underline text-offwhite font-semibold py-3 px-3 rounded hover:bg-[#f0f3ff] hover:text-blue">Home</Link>
-                        <Link to='/about' onClick={closeMenu} className="no-underline text-offwhite font-semibold py-3 px-3 rounded hover:bg-[#f0f3ff] hover:text-blue">About</Link>
-                        <Link to='/locations' onClick={closeMenu} className="no-underline text-offwhite font-semibold py-3 px-3 rounded hover:bg-[#f0f3ff] hover:text-blue">Locations</Link>
-                        <Link className="no-underline text-offwhite font-semibold py-3 px-3 rounded hover:bg-[#f0f3ff] hover:text-blue">Events</Link>
-                        <Link className="no-underline text-offwhite font-semibold py-3 px-3 rounded hover:bg-[#f0f3ff] hover:text-blue">Resources</Link>
-                        <Link to='/contact' onClick={closeMenu} className="no-underline text-offwhite font-semibold py-3 px-3 rounded hover:bg-[#f0f3ff] hover:text-blue">Contact</Link>
-                        <Link
-                            to='/givenow'
-                            onClick={closeMenu}
-                            className="no-underline inline-flex items-center justify-center bg-yellow-300 px-5 py-3 rounded-md font-semibold text-black mt-3"
-                        >
-                            Give now
-                        </Link>
-                    </nav>
-                </div>
-            )}
-        </header>
-    );
+          {renderDesktopCta()}
+        </div>
+
+        {/* Mobile hamburger */}
+        <button
+          ref={hamburgerRef}
+          type="button"
+          className="lg:hidden inline-flex items-center justify-center w-10 h-10 p-0 bg-transparent border-none cursor-pointer"
+          aria-label={mobileMenuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-nav-menu"
+          onClick={() => setMobileMenuOpen((v) => !v)}
+        >
+          <span className="relative inline-block w-6 h-[18px]">
+            <span
+              className="absolute left-0 w-full h-0.5 bg-blue rounded transition-all duration-200"
+              style={{
+                top: mobileMenuOpen ? '8px' : '0',
+                transform: mobileMenuOpen ? 'rotate(45deg)' : 'none',
+              }}
+            />
+            <span
+              className="absolute left-0 w-full h-0.5 bg-blue rounded transition-opacity duration-200"
+              style={{ top: '8px', opacity: mobileMenuOpen ? '0' : '1' }}
+            />
+            <span
+              className="absolute left-0 w-full h-0.5 bg-blue rounded transition-all duration-200"
+              style={{
+                top: mobileMenuOpen ? '8px' : '16px',
+                transform: mobileMenuOpen ? 'rotate(-45deg)' : 'none',
+              }}
+            />
+          </span>
+        </button>
+      </div>
+
+      {/* Mobile drawer */}
+      {mobileMenuOpen && (
+        <div
+          ref={mobileMenuRef}
+          id="mobile-nav-menu"
+          className="lg:hidden fixed left-0 w-full bg-white border-t border-[#e5e5ee] shadow-xl p-4 pb-6 box-border z-40 overflow-y-auto"
+          style={{
+            top: 'var(--header-height, 81px)',
+            maxHeight: 'calc(100vh - var(--header-height, 81px))',
+            animation: 'mobileDrawerFadeIn 0.18s ease-out',
+          }}
+          role="dialog"
+          aria-label="Mobile navigation"
+        >
+          <ul className="list-none m-0 p-0 flex flex-col">
+            {navLinks.map((link) => {
+              const isActive = link.key === active;
+              return (
+                <li key={link.key}>
+                  <Link
+                    to={link.href}
+                    aria-current={isActive ? 'page' : undefined}
+                    onClick={handleNavClick}
+                    className={`block w-full box-border px-3 py-3.5 rounded-lg border-b border-[#eeeef4] no-underline transition-colors duration-150 ${
+                      isActive
+                        ? 'text-blue font-semibold bg-[#f0f3ff]'
+                        : 'text-[#444651] font-semibold hover:bg-[#f0f3ff] hover:text-blue'
+                    }`}
+                    style={{ fontFamily: 'Inter, sans-serif', fontSize: '16px', lineHeight: '22px' }}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+          <div className="mt-4 pt-4 border-t border-[#eeeef4] flex flex-col gap-3">
+            {renderMobileCta()}
+          </div>
+        </div>
+      )}
+    </header>
+  );
 };
 
 export default Navbar;
