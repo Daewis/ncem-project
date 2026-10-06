@@ -1,19 +1,15 @@
-// import React from 'react'
-
-import ContactForm from "../components/Contact/ContactForm"
-import EmailSubscription from "../components/Contact/EmailSubscription"
-import Hero from "../components/Contact/Hero"
-import Footer from "../components/Home/Footer"
+import ContactForm from "../components/Contact/ContactForm";
+import EmailSubscription from "../components/Contact/EmailSubscription";
+import Hero from "../components/Contact/Hero";
 
 const Contact = () => {
-    return (
-        <div className="">
-            <Hero />
-            <ContactForm />
-            <EmailSubscription />
-            <Footer />
-        </div>
-    )
-}
+  return (
+    <div>
+      <Hero />
+      <ContactForm />
+      <EmailSubscription />
+    </div>
+  );
+};
 
-export default Contact
+export default Contact;

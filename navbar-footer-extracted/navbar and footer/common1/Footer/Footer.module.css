@@ -1,0 +1,142 @@
+.footer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #151c27;
+    background-color: #2a313d;
+    font-family: "Inter", sans-serif;
+  }
+  
+  .footerContentWrapper {
+    width: 100%;
+    background-color: #232a3a;
+  }
+  
+  .footerContent {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 120px 24px;
+    box-sizing: border-box;
+  }
+  
+  @media (min-width: 640px) {
+    .footerContent {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  
+  @media (min-width: 1024px) {
+    .footerContent {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+  
+  /* Brand Column */
+  .brandColumn {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 24px;
+  }
+  
+  .logoLink {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+  
+  .logoImage {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+  }
+  
+  .logoText {
+    color: #ffffff;
+    font-family: "Montserrat", sans-serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 30px;
+  }
+  
+  .description {
+    margin: 0;
+    color: #dce2f3;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+  }
+  
+  /* Navigation Columns */
+  .linkColumn {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .columnHeading {
+    margin: 0;
+    color: #f9f9ff;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.7px;
+    line-height: 20px;
+  }
+  
+  .linkList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  
+  .link {
+    display: inline-block;
+    color: #dce2f3;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.15s ease, color 0.15s ease;
+  }
+  
+  .link:hover {
+    opacity: 1;
+    color: #ffffff;
+  }
+  
+  .activeLink {
+    color: #f9bd22;
+    font-weight: 600;
+    opacity: 1;
+  }
+  
+  /* Bottom Bar */
+  .copyrightSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 24px;
+    background-color: #151c27;
+    border-top: 1px solid rgba(220, 226, 243, 0.2);
+    box-sizing: border-box;
+  }
+  
+  .copyright {
+    margin: 0;
+    color: #dce2f3;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: center;
+    opacity: 0.6;
+  }

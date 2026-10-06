@@ -4,8 +4,13 @@ import backgroundImage from '../../assets/Gradient.png'
 const Hero = () => {
     return (
         <div
-            className='min-h-[80vh] sm:h-screen w-full bg-cover bg-center flex flex-col items-center justify-center pt-16 pb-12 sm:pb-0 px-6 sm:px-7 space-y-6 sm:space-y-7 text-center text-white max-w-7xl mx-auto'
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            className='relative min-h-[80vh] sm:h-screen w-full bg-cover bg-center flex flex-col items-center justify-center pt-24 pb-12 sm:pb-0 px-6 sm:px-7 space-y-6 sm:space-y-7 text-center text-white'
+            style={{
+                backgroundImage: `url(${backgroundImage})`,
+                // Pull up under the fixed navbar so the hero image fills viewport
+                marginTop: 'calc(-1 * var(--header-height, 81px))',
+                paddingTop: 'var(--header-height, 81px)',
+            }}
         >
             <h1 className='md:text-home-heading-large text-home-heading-small relative font-bold max-w-3xl mx-auto'>
                 if any man is in christ is a new creature
